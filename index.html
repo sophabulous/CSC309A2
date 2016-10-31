@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TA Application</title>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+    </head>
+    <body>
+        <div id="container">
+            <div id="navigation">
+                <h1 id="title">TA Application Centre</h1>
+                <ul>
+                    <li>Applicants</li>
+                    <li id="statusparent">Applicants by status</li>            
+                    <li>Search by Family Name</li>
+                    <li>Add applicant</li>
+                    <li>Remove applicant</li>
+                    <li>Courses</li>
+                    <li>Search for Course</li>
+                </ul>
+            </div>
+            <div id="content">
+                <div class="status">
+                    <h1>Please select a status</h1>
+                    <select>
+                        <option id="Undergrad">Undergrad</option>
+                        <option id="MSc">MSc</option>
+                        <option id="PhD">PhD</option>
+                        <option id="MScAC">MScAC</option>
+                        <option id="MEng">MEng</option>
+                    </select>
+                    <button type="button" id="statusbutton">Show Applicants</button>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="ta.js"></script>
+    </body>
+<html>
