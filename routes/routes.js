@@ -18,6 +18,9 @@ fs.readFile('tas.json', 'utf-8', function(err, data) {
 
 exports.findAllApplicants = function(req, res) {
     res.send(JSON.stringify(applicants));
+    console.log("ej");
+    // res.type('application/json');
+    // res.send(applicants);
 };
 
 exports.findById = function(req, res) {

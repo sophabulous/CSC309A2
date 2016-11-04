@@ -11,7 +11,7 @@
             <div id="navigation">
                 <h1 id="title">TA Application Centre</h1>
                 <ul>
-                    <li>Applicants</li>
+                    <li id="applicantsparent">Applicants</li>
                     <li id="statusparent">Applicants by status</li>            
                     <li id="familynameparent">Search by Family Name</li>
                     <li id="addapplicantparent">Add applicant</li>
@@ -66,6 +66,16 @@
 	                	</div>
                 	</div>
 					<button type="button" id="addapplicantbutton">Submit</button>
+                </div>
+                <div >
+					<table class="allapplicants">
+					  	<tr id="header">
+					    	<th>Given Name</th>
+					    	<th>Family Name</th> 
+					    	<th>Status</th>
+					    	<th>Year</th>
+					  	</tr>
+					</table>
                 </div>
             </div>
         </div>

@@ -28,7 +28,23 @@ $(document).ready(function() {
         $('.courseid').removeClass('visible');
     });
 
+    $('#applicantsparent').click(function() {
+        $.get('/applicants', function(data) {
+            showApplicants(data);
+        });
+    });
 
+    function showApplicants(data) {
+        // $(".allapplicants").html(data);
+
+        $( "#header" ).nextAll().remove();
+        var obj = jQuery.parseJSON(data)["tas"];
+        $.each( obj, function( key, value ) {
+            console.log( value["givenname"] + '|' + value["familyname"] + '|' + value["status"] + '|' + value["year"]);
+            $(".allapplicants").append('<tr><td>' + value["givenname"] + '</td>' + '<td>' + 
+                value["familyname"] + '</td>' + '<td>' + value["status"] + '</td>' + '<td>' + value["year"] + '</td></tr>');
+        });
+    }
 });
 
 
