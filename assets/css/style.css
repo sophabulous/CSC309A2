@@ -74,12 +74,19 @@ ul li {
     display: none;
 }
 
+.familyname {
+    display: none;
+}
+
+.courseid {
+    display: none;
+}
+
+.addapplicant{
+	display: none;
+}
+
 .visible {
     display: block;
-/*    margin: 0;
-    padding: 0;
-    height: 480px;
-    width: 100%;
-    border-left: 20px solid #004d80;
-    box-sizing: border-box;*/
 }
+

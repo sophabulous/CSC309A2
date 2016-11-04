@@ -4,8 +4,7 @@
         <meta charset="utf-8">
         <title>TA Application</title>
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-        <link rel="stylesheet" type="text/css" href="style.css">
-
+		<link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
     <body>
         <div id="container">
@@ -14,11 +13,11 @@
                 <ul>
                     <li>Applicants</li>
                     <li id="statusparent">Applicants by status</li>            
-                    <li>Search by Family Name</li>
-                    <li>Add applicant</li>
+                    <li id="familynameparent">Search by Family Name</li>
+                    <li id="addapplicantparent">Add applicant</li>
                     <li>Remove applicant</li>
-                    <li>Courses</li>
-                    <li>Search for Course</li>
+                    <li id="coursesparent">Courses</li>
+                    <li id="courseidparent">Search for Course</li>
                 </ul>
             </div>
             <div id="content">
@@ -33,9 +32,44 @@
                     </select>
                     <button type="button" id="statusbutton">Show Applicants</button>
                 </div>
+                <div class="familyname">
+                	<h1>Please enter a family name</h1>
+                	<input type="text" name="">
+                	<button type="button" id="familynamebutton">Submit</button>
+                </div>
+                <div class="courseid">
+                	<h1>Please enter a course ID</h1>
+                	<input type="text" name="">
+                	<button type="button" id="courseIDbutton">Submit</button>
+                </div>
+                <div class="addapplicant">
+                	<h1>Please fill out the following fields</h1>
+                	<p>Student Number: <input type="text" id="stunum" name="" required></p>
+                	<p>Given Name: <input type="text" id="givenname" name="" required></p>
+                	<p>Family Name: <input type="text" id="familyname" name="" required></p>
+                	<p>Status: 
+                		<select>
+	                        <option id="Undergrad">Undergrad</option>
+	                        <option id="MSc">MSc</option>
+	                        <option id="PhD">PhD</option>
+	                        <option id="MScAC">MScAC</option>
+	                        <option id="MEng">MEng</option>
+	                    </select>
+                    </p>
+                	<p>Year: <input type="text" id="year" name="" required></p>
+                	<div class="coursefield">
+	                	<div class="courses" required>
+		                	<h4>Courses:</h4>
+		                	<p>Code: <input type="text" class="code" name=""></p>
+		                	<p>Rank: <input type="text" class="rank" name=""></p>
+		                	<p>Experience: <input type="text" class="experience" name=""></p>
+	                	</div>
+                	</div>
+					<button type="button" id="addapplicantbutton">Submit</button>
+                </div>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="ta.js"></script>
+        <script src="scripts/ta.js"></script>
     </body>
 <html>
