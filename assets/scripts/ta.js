@@ -85,10 +85,22 @@ $(document).ready(function() {
 
         var course = $('#courseinput').val();
         $.get('/courses?course=' + course, function(data) {
-            console.log("in courses id");
+
             showApplicantsForCourse(data);
         });
     });
+
+    $('#addapplicantbutton').click(function() {
+        $('.allapplicants').removeClass('visible');
+        $('.coursestable').removeClass('visible');
+        $('.applicantforcourse').removeClass('visible');
+
+        var course = $('#courseinput').val();
+        $.post('/applicants', function(data) {
+
+        });
+    });
+
 
     function sortBy(prop){
        return function(a,b){

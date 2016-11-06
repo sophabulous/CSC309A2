@@ -112,3 +112,12 @@ exports.findApplicantForCourses= function(req, res) {
 
     }
 };
+
+
+exports.addApplicants= function(req, res) {
+    console.log(req.body);
+    var applicant = req.body;
+    
+    applicants.longlist.push(applicant);
+    res.send("Success");
+};

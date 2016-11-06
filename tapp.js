@@ -28,7 +28,7 @@ app.get('/applicants', routes.findAllApplicants);
 
 app.get('/courses', routes.findApplicantForCourses);
 
-// app.post('/applicants', routes.addApplicant);
+app.post('/applicants', routes.addApplicants);
 
 // app.delete('/remove/:id', routes.delById);
 
