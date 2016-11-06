@@ -23,18 +23,18 @@
             <div id="content">
                 <div class="status">
                     <h1>Please select a status</h1>
-                    <select>
-                        <option id="Undergrad">Undergrad</option>
-                        <option id="MSc">MSc</option>
-                        <option id="PhD">PhD</option>
-                        <option id="MScAC">MScAC</option>
-                        <option id="MEng">MEng</option>
+                    <select id="selectstatus">
+                        <option value="Undergrad">Undergrad</option>
+                        <option value="MSc">MSc</option>
+                        <option value="PhD">PhD</option>
+                        <option value="MScAC">MScAC</option>
+                        <option value="MEng">MEng</option>
                     </select>
                     <button type="button" id="statusbutton">Show Applicants</button>
                 </div>
                 <div class="familyname">
                 	<h1>Please enter a family name</h1>
-                	<input type="text" name="">
+                	<input id="familynameinput" type="text" name="">
                 	<button type="button" id="familynamebutton">Submit</button>
                 </div>
                 <div class="courseid">
@@ -42,7 +42,8 @@
                 	<input type="text" name="">
                 	<button type="button" id="courseIDbutton">Submit</button>
                 </div>
-                <div class="addapplicant">
+
+				<div class="addapplicant">
                 	<h1>Please fill out the following fields</h1>
                 	<p>Student Number: <input type="text" id="stunum" name="" required></p>
                 	<p>Given Name: <input type="text" id="givenname" name="" required></p>
@@ -67,16 +68,31 @@
                 	</div>
 					<button type="button" id="addapplicantbutton">Submit</button>
                 </div>
-                <div >
-					<table class="allapplicants">
-					  	<tr id="header">
-					    	<th>Given Name</th>
-					    	<th>Family Name</th> 
-					    	<th>Status</th>
-					    	<th>Year</th>
-					  	</tr>
-					</table>
-                </div>
+                <table class="allapplicants">
+				  	<tr id="header">
+				    	<th>Given Name</th>
+				    	<th>Family Name</th> 
+				    	<th>Status</th>
+				    	<th>Year</th>
+				  	</tr>
+				</table>
+				<table class="coursestable">
+				  	<tr id="courseheader">
+				    	<th>Course Code</th>             
+				    	<th>Rank</th> 
+				    	<th>Experience</th>
+				  	</tr>
+				</table>
+				<table class="applicantforcourse">
+				  	<tr id="appcheader">
+				  		<th>Code</th>
+				    	<th>Ranking</th>             
+				    	<th>Experience</th> 
+				    	<th>Status</th>
+				    	<th>Given Name</th>
+				    	<th>Family Name</th>
+				  	</tr>
+				</table>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

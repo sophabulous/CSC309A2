@@ -86,6 +86,21 @@ ul li {
 	display: none;
 }
 
+.allapplicants{
+  display: none;
+}
+
+.applicantsbyStatus{
+  display: none;
+}
+
+.coursestable{
+  display: none;
+}
+
+.applicantforcourse{
+    display: none;
+}
 .visible {
     display: block;
 }

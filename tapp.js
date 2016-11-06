@@ -25,7 +25,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/applicants', routes.findAllApplicants);
-// app.get('/courses', routes.findAllCourses);
+
+app.get('/courses', routes.findApplicantForCourses);
     
 // app.get('/courses/:id', routes.findCourseById);
 
