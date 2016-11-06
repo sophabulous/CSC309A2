@@ -6,6 +6,7 @@ $(document).ready(function() {
         $('.familyname').removeClass('visible');
         $('.addapplicant').removeClass('visible');
         $('.allapplicants').removeClass('visible');
+        $('.applicantforcourse').removeClass('visible');
     });
 
     $('#familynameparent').click(function() {
@@ -13,6 +14,7 @@ $(document).ready(function() {
         $('.courseid').removeClass('visible');
         $('.status').removeClass('visible');
         $('.addapplicant').removeClass('visible');
+        $('.applicantforcourse').removeClass('visible');
     });
 
     $('#courseidparent').click(function() {
@@ -21,6 +23,7 @@ $(document).ready(function() {
         $('.familyname').removeClass('visible');
         $('.addapplicant').removeClass('visible');
         $('.allapplicants').removeClass('visible');
+        $('.applicantforcourse').removeClass('visible');
     });
 
     $('#addapplicantparent').click(function() {
@@ -29,6 +32,7 @@ $(document).ready(function() {
         $('.familyname').removeClass('visible');
         $('.courseid').removeClass('visible');
         $('.allapplicants').removeClass('visible');
+        $('.applicantforcourse').removeClass('visible');
     });
 
     $('#applicantsparent').click(function() {
@@ -63,13 +67,39 @@ $(document).ready(function() {
     $('#coursesparent').click(function() {
         $('.allapplicants').removeClass('visible');
         $('.coursestable').removeClass('visible');
+        $('.courseid').removeClass('visible');
+        $('.familyname').removeClass('visible');
+        $('.addapplicant').removeClass('visible');
         $('.applicantforcourse').addClass('visible');
+        $('.status').removeClass('visible');
 
         $.get('/courses', function(data) {
-            console.log("in courses");
             showApplicantsForCourse(data);
         });
     });
+
+    $('#courseIDbutton').click(function() {
+        $('.allapplicants').removeClass('visible');
+        $('.coursestable').removeClass('visible');
+        $('.applicantforcourse').addClass('visible');
+
+        var course = $('#courseinput').val();
+        $.get('/courses?course=' + course, function(data) {
+            console.log("in courses id");
+            showApplicantsForCourse(data);
+        });
+    });
+
+    function sortBy(prop){
+       return function(a,b){
+          if( a[prop] > b[prop]){
+              return 1;
+          }else if( a[prop] < b[prop] ){
+              return -1;
+          }
+          return 0;
+       }
+    }
 
     function showApplicants(data) {
 
@@ -109,15 +139,27 @@ $(document).ready(function() {
         var obj = jQuery.parseJSON(data);
 
         $.each( obj, function( key, value ) {
-            var tas = value["courses"]["tas"];
-            if (jQuery.isEmptyObject(tas)){
-                $(".applicantforcourse").append('<tr><td>' + value["courses"]["code"] + '</td>'+ 
-                    '<td> N/A </td><td> N/A </td><td> N/A </td><td> N/A </td> <td> N/A </td></tr>');
-            }else{
-                $(".applicantforcourse").append('<tr><td>' + value["courses"]["code"] + '</td>' + '<td>' + tas["ranking"] 
-                    + '</td>' + '<td>' + tas["experience"] + '</td>' + '<td>' + tas["status"] + '</td>' + '<td>' + tas["givenname"] 
-                    + '</td>' + '<td>' + tas["familyname"] + '</td></tr>');
 
+            var tas = value["courses"]["tas"];
+            tas.sort(sortBy("ranking") );
+            if (jQuery.isEmptyObject(tas)){                             
+                $(".applicantforcourse").append('<tr><th colspan="5">' + value["courses"]["code"] + '</th></tr>'+ 
+                    '<tr><td> N/A </td><td> N/A </td><td> N/A </td><td> N/A </td> <td> N/A </td></tr>');
+            }else{
+                var counter = 0;
+                $.each( tas, function( k, v ) {
+                    console.log(v);
+                    if (counter == 0) {
+                        $(".applicantforcourse").append('<tr><th colspan="5">' + value["courses"]["code"] + '</th></tr>' + 
+                        '<tr><td>' + v["ranking"] + '</td>' + '<td>' + v["experience"] + '</td>' + '<td>' + v["status"] + 
+                        '</td>' + '<td>' + v["givenname"] + '</td>' + '<td>' + v["familyname"] + '</td></tr>');
+                    }else{
+                        $(".applicantforcourse").append('<tr><td>' + v["ranking"] + '</td>' + '<td>' + v["experience"] + '</td>' + '<td>' + v["status"] + 
+                            '</td>' + '<td>' + v["givenname"] + '</td>' + '<td>' + v["familyname"] + '</td></tr>');
+                    }
+                    counter++;
+
+                });
             }
 
         });

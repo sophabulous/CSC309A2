@@ -35,7 +35,6 @@ exports.findAllApplicants = function(req, res) {
         res.send(JSON.stringify(result));
     }else{
         if ("status" in req.query) {
-            console.log('this is status');
             var status = req.query.status;
             var applicantswithstatus = {};
 
@@ -67,27 +66,49 @@ exports.findApplicantForCourses= function(req, res) {
     var tas = applicants["tas"];
     var courses = courseObj["courses"];
     var results = [];
+    // results['courses'] = [];
 
-    for (var i in courses) {
-        result = {};
-        result['code'] = courses[i];
-        result['tas'] = {};
-        for (var j in tas) {
-            for (var z in tas[j]["courses"]) {
-                if (tas[j]["courses"][z]["code"] === courses[i]) {
+    if (Object.keys(req.query).length === 0) {
 
-                    result['tas']['stunum'] = tas[j]["stunum"];
-                    result['tas']['givenname'] = tas[j]["givenname"];
-                    result['tas']['familyname'] = tas[j]["familyname"];
-                    result['tas']['status'] = tas[j]["status"];
-                    result['tas']['year'] = tas[j]["year"];
-                    result['tas']['ranking'] = tas[j]["courses"][z]["rank"];
-                    result['tas']['experience'] = tas[j]["courses"][z]["experience"];
+        for (var i in courses) {
+            result = {};
+            result['code'] = courses[i];
+            result['tas'] = [];
+            for (var j in tas) {
+                for (var z in tas[j]["courses"]) {
+                    if (tas[j]["courses"][z]["code"] === courses[i]) {
 
+                        result['tas'].push({'stunum':tas[j]["stunum"], 'givenname':tas[j]["givenname"], 
+                            'familyname':tas[j]["familyname"], 'status':tas[j]["status"], 'year':tas[j]["year"],
+                            'ranking':tas[j]["courses"][z]["rank"], 'experience':tas[j]["courses"][z]["experience"]});
+
+                    }
                 }
             }
+            results.push({courses: result});
         }
-        results.push({courses: result});
+        res.send(JSON.stringify(results));
+    }else{
+         if ("course" in req.query) {
+            var requestedCourse = req.query.course;
+
+            for (var j in tas) {
+                result = {};
+                result['tas'] = [];
+                for (var z in tas[j]["courses"]) {
+                    if (tas[j]["courses"][z]["code"] === requestedCourse) {
+                        result['code'] = tas[j]["courses"][z]["code"];
+                        result['tas'].push({'stunum':tas[j]["stunum"], 'givenname':tas[j]["givenname"], 
+                            'familyname':tas[j]["familyname"], 'status':tas[j]["status"], 'year':tas[j]["year"],
+                            'ranking':tas[j]["courses"][z]["rank"], 'experience':tas[j]["courses"][z]["experience"]});
+
+                    }
+                }
+                results.push({courses: result});
+            }
+            
+            res.send(JSON.stringify(results));
+         }
+
     }
-    res.send(JSON.stringify(results));
 };
